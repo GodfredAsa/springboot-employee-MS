@@ -18,7 +18,6 @@ import java.util.Map;
 // swagger url
 //http://localhost:8088/swagger-ui/index.html#/
 
-
 @RestController
 @RequestMapping("/api/vi")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,8 +34,7 @@ public class EmployeeController {
 
     @GetMapping("/employees/{id}")
     @Operation(summary = "get employee by id")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
-    throws ResourceNotFoundException {
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
         Employee employee = repository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
         return ResponseEntity.ok().body(employee);
@@ -50,7 +48,6 @@ public class EmployeeController {
 
 
 //    update method with issues
-
     @PutMapping("/employees/{id}")
     @Operation(summary = "save an employee")
     public Employee updateEmployee(@PathVariable(value = "id") Long employeeId,
@@ -71,8 +68,7 @@ public class EmployeeController {
 
     @DeleteMapping("/employees/{id}")
     @Operation(summary = "deletes an employee")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId)
-            throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
         Employee employee = repository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
 
